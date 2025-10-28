@@ -2,8 +2,8 @@
 // データベース設定
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'hajime_db');
-define('DB_USER', 'root');
-define('DB_PASS', 'root');
+define('DB_USER', '');
+define('DB_PASS', '');
 define('DB_CHARSET', 'utf8mb4');
 
 // サイト設定
