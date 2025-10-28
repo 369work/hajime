@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hajime CMS Logo</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        .logo-container {
+            text-align: center;
+            padding: 60px;
+        }
+
+        .logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 20px;
+            padding: 40px 50px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: translateY(-5px);
+        }
+
+        .symbol {
+            position: relative;
+            width: 50px;
+            height: 50px;
+        }
+
+        .circle {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            border: 3px solid #2c3e50;
+            border-radius: 50%;
+            top: 0;
+            left: 0;
+        }
+
+        .zen-line {
+            position: absolute;
+            width: 32px;
+            height: 2.5px;
+            background: #e74c3c;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            border-radius: 2px;
+        }
+
+        .text {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .main-text {
+            font-size: 48px;
+            font-weight: 700;
+            color: #2c3e50;
+            letter-spacing: 2px;
+            margin: 0;
+            line-height: 1;
+        }
+
+        .sub-text {
+            font-size: 14px;
+            color: #7f8c8d;
+            letter-spacing: 3px;
+            margin-top: 8px;
+            font-weight: 400;
+        }
+
+        .kanji {
+            font-size: 16px;
+            color: #e74c3c;
+            margin-top: 4px;
+            font-weight: 500;
+        }
+
+        .variants {
+            margin-top: 60px;
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .variant {
+            padding: 20px 30px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .variant-title {
+            font-size: 12px;
+            color: #95a5a6;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .dark-bg {
+            background: #2c3e50;
+        }
+
+        .dark-bg .circle {
+            border-color: white;
+        }
+
+        .dark-bg .zen-line {
+            background: #e74c3c;
+        }
+
+        .dark-bg .main-text {
+            color: white;
+        }
+
+        .dark-bg .sub-text {
+            color: #bdc3c7;
+        }
+
+        .minimal .logo {
+            padding: 20px 30px;
+        }
+
+        .minimal .symbol {
+            width: 40px;
+            height: 40px;
+        }
+
+        .minimal .circle {
+            width: 40px;
+            height: 40px;
+            border-width: 2px;
+        }
+
+        .minimal .zen-line {
+            width: 25px;
+            height: 2px;
+        }
+
+        .minimal .main-text {
+            font-size: 24px;
+        }
+
+        .minimal .sub-text {
+            font-size: 10px;
+        }
+
+        .minimal .kanji {
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="logo-container">
+        <div class="logo">
+            <div class="symbol">
+                <div class="circle"></div>
+                <div class="zen-line"></div>
+            </div>
+            <div class="text">
+                <div class="main-text">HAJIME</div>
+                <div class="kanji">始</div>
+                <div class="sub-text">CMS</div>
+            </div>
+        </div>
+
+        <div class="variants">
+            <div class="variant">
+                <div class="variant-title">Dark Version</div>
+                <div class="logo dark-bg">
+                    <div class="symbol">
+                        <div class="circle"></div>
+                        <div class="zen-line"></div>
+                    </div>
+                    <div class="text">
+                        <div class="main-text">HAJIME</div>
+                        <div class="kanji">始</div>
+                        <div class="sub-text">CMS</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="variant minimal">
+                <div class="variant-title">Compact Version</div>
+                <div class="logo">
+                    <div class="symbol">
+                        <div class="circle"></div>
+                        <div class="zen-line"></div>
+                    </div>
+                    <div class="text">
+                        <div class="main-text">HAJIME</div>
+                        <div class="kanji">始</div>
+                        <div class="sub-text">CMS</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
