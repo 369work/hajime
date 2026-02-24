@@ -21,85 +21,55 @@ PHPとMySQLで構築されたシンプルなコンテンツ管理システムで
 
 ### 1. ファイルの配置
 
-プロジェクトをWebサーバーのドキュメントルートに配置します。
+プロジェクト一式をWebサーバーのドキュメントルートに配置します。
 
 ```bash
 # 例: XAMPPの場合
 D:\xampp\htdocs\hajime
 ```
 
-### 2. データベースのセットアップ
+### 2. パーミッション設定
 
-MySQLにログインして、setup.sqlを実行します。
+以下のディレクトリに書き込み権限（755または777）を設定してください。
+- `includes/` （`config.php` 作成のため）
+- `uploads/` （画像アップロードのため）
 
-```bash
-mysql -u root -p < setup.sql
-```
+### 3. インストーラーへのアクセス
 
-または、phpMyAdminを使用して setup.sql をインポートします。
-
-### 3. 設定ファイルの編集
-
-`includes/config.php` を開き、データベース接続情報を確認・編集します。
-
-```php
-define('DB_HOST', 'localhost');
-define('DB_NAME', 'hajime_db');
-define('DB_USER', 'root');
-define('DB_PASS', '');
-```
-
-サイトURLも環境に合わせて変更してください。
-
-```php
-define('SITE_URL', 'http://localhost/hajime');
-```
-
-### 4. ディレクトリの権限設定
-
-アップロードディレクトリに書き込み権限を付与します。
-
-```bash
-chmod 755 uploads/
-```
-
-### 5. 管理画面へアクセス
-
-ブラウザで以下のURLにアクセスします。
+ブラウザで以下のURLにアクセスし、セットアップウィザードを開始します。
 
 ```
-http://localhost/hajime/admin/
+http://localhost/hajime/install/
 ```
 
-デフォルトのログイン情報:
-- ユーザー名: `admin`
-- パスワード: `admin`
+### 4. セットアップの実行
+
+画面の指示に従って情報を入力します：
+1. **サイトURL**: 自動検出されますが、必要に応じて修正してください。
+2. **データベース設定**:
+   - データベースが存在しない場合は、インストーラーが作成を試みます（root権限等が必要）。
+   - 既存の空のデータベースを使用することも可能です。
+3. **管理者アカウント**: ログイン用の情報を設定します。
+
+### 5. インストール完了
+
+インストールが完了したら、管理画面へログインしてください。
+セキュリティのため、**必ず `install/` ディレクトリを削除** してください。
 
 ## ディレクトリ構成
 
 ```
 hajime/
 ├── admin/              # 管理画面
-│   ├── index.php       # ダッシュボード
-│   ├── login.php       # ログイン
-│   ├── logout.php      # ログアウト
-│   ├── page-edit.php   # ページ編集
-│   └── page-delete.php # ページ削除
+├── install/            # インストーラー (インストール後削除推奨)
 ├── includes/           # PHPクラス・設定
-│   ├── config.php      # 設定ファイル
-│   ├── Database.php    # データベースクラス
-│   ├── Page.php        # ページモデル
-│   └── Auth.php        # 認証クラス
-├── templates/          # テンプレート
-│   ├── default/        # デフォルトテンプレート
-│   │   └── index.php
-│   └── modern/         # モダンテンプレート
-│       └── index.php
-├── uploads/            # アップロードファイル
-├── assets/             # CSS/JS/画像
-├── index.php           # フロントエンドエントリーポイント
-├── .htaccess           # Apache設定
-├── setup.sql           # データベースセットアップ
+│   ├── config.sample.php # 設定ファイル雛形
+│   └── ...
+├── templates/          # テーマテンプレート
+├── uploads/            # アップロードファイル保存先
+├── assets/             # 静的リソース (CSS/JS/画像)
+├── index.php           # フロントエンド
+├── .htaccess           # ルーティング設定
 └── README.md           # このファイル
 ```
 
