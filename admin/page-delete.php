@@ -22,12 +22,16 @@ if (!$page) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm'])) {
-    try {
-        $pageModel->deletePage($pageId);
-        header('Location: index.php?deleted=1');
-        exit;
-    } catch (Exception $e) {
-        $error = 'エラーが発生しました: ' . $e->getMessage();
+    if (!$auth->verifyCSRFToken($_POST['csrf_token'] ?? '')) {
+        $error = 'セッションが無効です。もう一度お試しください。';
+    } else {
+        try {
+            $pageModel->deletePage($pageId);
+            header('Location: index.php?deleted=1');
+            exit;
+        } catch (Exception $e) {
+            $error = 'エラーが発生しました: ' . $e->getMessage();
+        }
     }
 }
 
@@ -35,12 +39,18 @@ $currentUser = $auth->getCurrentUser();
 ?>
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ページ削除 - Hajime CMS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="assets/css/admin-nordic.css">
 </head>
+
 <body class="bg-gray-100">
     <nav class="bg-white shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -67,7 +77,7 @@ $currentUser = $auth->getCurrentUser();
             </a>
         </div>
 
-        <div class="bg-white rounded-lg shadow p-6">
+        <div class="nordic-card">
             <h2 class="text-2xl font-bold text-gray-800 mb-6">ページの削除</h2>
 
             <?php if (isset($error)): ?>
@@ -111,22 +121,22 @@ $currentUser = $auth->getCurrentUser();
             </div>
 
             <form method="POST" action="" class="flex justify-end space-x-4">
-                <a 
-                    href="index.php" 
-                    class="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 transition-colors"
-                >
+                <input type="hidden" name="csrf_token" value="<?php echo $auth->generateCSRFToken(); ?>">
+                <a
+                    href="index.php"
+                    class="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 transition-colors">
                     キャンセル
                 </a>
-                <button 
-                    type="submit" 
+                <button
+                    type="submit"
                     name="confirm"
                     value="1"
-                    class="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors"
-                >
+                    class="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors">
                     削除する
                 </button>
             </form>
         </div>
     </div>
 </body>
+
 </html>

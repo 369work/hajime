@@ -1,0 +1,116 @@
+/* Nordic Style Admin Theme for Hajime CMS */
+
+:root {
+    --nordic-bg: #f8fafc;
+    --nordic-white: #ffffff;
+    --nordic-sidebar: #f1f5f9;
+    --nordic-primary: #334155;
+    --nordic-accent: #64748b;
+    --nordic-success: #10b981;
+    --nordic-danger: #ef4444;
+    --nordic-text: #1e293b;
+    --nordic-text-light: #64748b;
+    --nordic-border: #e2e8f0;
+    --nordic-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+}
+
+.font-outfit { font-family: 'Outfit', sans-serif; }
+.font-inter { font-family: 'Inter', sans-serif; }
+
+body {
+    background-color: var(--nordic-bg);
+    color: var(--nordic-text);
+    font-family: 'Outfit', 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    letter-spacing: -0.01em;
+}
+
+/* Nav styles */
+nav {
+    background-color: var(--nordic-white);
+    border-bottom: 1px solid var(--nordic-border);
+    box-shadow: none !important;
+}
+
+nav a {
+    color: var(--nordic-text-light);
+    transition: color 0.2s ease;
+}
+
+nav a:hover {
+    color: var(--nordic-primary);
+}
+
+nav .active-link {
+    color: var(--nordic-primary);
+    font-weight: 600;
+}
+
+/* Card styles */
+.nordic-card {
+    background-color: var(--nordic-white);
+    border-radius: 12px;
+    border: 1px solid var(--nordic-border);
+    box-shadow: var(--nordic-shadow);
+    padding: 24px;
+}
+
+/* Button styles */
+.btn-nordic {
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.btn-nordic-primary {
+    background-color: var(--nordic-primary);
+    color: white;
+}
+
+.btn-nordic-primary:hover {
+    background-color: #1e293b;
+    transform: translateY(-1px);
+}
+
+/* Input styles */
+input[type="text"], input[type="email"], input[type="password"], input[type="number"], select, textarea {
+    border: 1px solid var(--nordic-border);
+    border-radius: 8px;
+    padding: 10px 14px;
+    transition: border-color 0.2s ease, ring 0.2s ease;
+}
+
+input:focus, select:focus, textarea:focus {
+    border-color: var(--nordic-accent);
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(100, 116, 139, 0.1);
+}
+
+/* Tables */
+table {
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+th {
+    background-color: #f8fafc;
+    color: var(--nordic-text-light);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    border-bottom: 2px solid var(--nordic-border);
+}
+
+td {
+    border-bottom: 1px solid var(--nordic-border);
+    padding: 16px 24px;
+}
+
+tr:hover td {
+    background-color: #f8fafc;
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
