@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inform CSS Test</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Inform Custom Styles -->
+    <link rel="stylesheet" href="../../assets/css/inform.css">
+</head>
+
+<body>
+    <div class="inform-form-container">
+        <!-- フォームヘッダー -->
+        <div class="inform-form-header">
+            <h2 class="inform-form-title">お問い合わせフォーム</h2>
+            <p class="inform-form-description">
+                お気軽にお問い合わせください。<br>
+                担当者より折り返しご連絡いたします。
+            </p>
+        </div>
+
+        <!-- 成功メッセージ（テスト用） -->
+        <div class="inform-message inform-message-success inform-hidden" id="success-msg">
+            お問い合わせありがとうございます。
+        </div>
+
+        <!-- エラーメッセージ（テスト用） -->
+        <div class="inform-message inform-message-error inform-hidden" id="error-msg">
+            エラーが発生しました。もう一度お試しください。
+        </div>
+
+        <!-- フォーム本体 -->
+        <form class="inform-form" id="test-form">
+            <!-- テキストフィールド -->
+            <div class="inform-field">
+                <label class="inform-field-label">
+                    お名前 <span class="inform-field-required">*</span>
+                </label>
+                <input type="text" class="inform-field-input" placeholder="山田太郎" required>
+            </div>
+
+            <!-- メールフィールド -->
+            <div class="inform-field">
+                <label class="inform-field-label">
+                    メールアドレス <span class="inform-field-required">*</span>
+                </label>
+                <input type="email" class="inform-field-input" placeholder="example@example.com" required>
+            </div>
+
+            <!-- セレクトフィールド -->
+            <div class="inform-field">
+                <label class="inform-field-label">
+                    お問い合わせ種別
+                </label>
+                <select class="inform-field-select">
+                    <option value="">選択してください</option>
+                    <option value="general">一般的なお問い合わせ</option>
+                    <option value="support">サポート</option>
+                    <option value="sales">営業</option>
+                </select>
+            </div>
+
+            <!-- テキストエリア -->
+            <div class="inform-field">
+                <label class="inform-field-label">
+                    お問い合わせ内容 <span class="inform-field-required">*</span>
+                </label>
+                <textarea class="inform-field-textarea" placeholder="お問い合わせ内容をご記入ください" required></textarea>
+            </div>
+
+            <!-- ラジオボタン -->
+            <div class="inform-field">
+                <label class="inform-field-label">
+                    希望する連絡方法
+                </label>
+                <div class="inform-field-option">
+                    <input type="radio" name="contact-method" value="email" class="inform-field-radio" id="radio1">
+                    <label for="radio1" class="inform-field-option-label">メール</label>
+                </div>
+                <div class="inform-field-option">
+                    <input type="radio" name="contact-method" value="phone" class="inform-field-radio" id="radio2">
+                    <label for="radio2" class="inform-field-option-label">電話</label>
+                </div>
+            </div>
+
+            <!-- チェックボックス -->
+            <div class="inform-field">
+                <label class="inform-field-label">
+                    興味のあるサービス
+                </label>
+                <div class="inform-field-option">
+                    <input type="checkbox" name="services[]" value="web" class="inform-field-checkbox" id="check1">
+                    <label for="check1" class="inform-field-option-label">Webサイト制作</label>
+                </div>
+                <div class="inform-field-option">
+                    <input type="checkbox" name="services[]" value="app" class="inform-field-checkbox" id="check2">
+                    <label for="check2" class="inform-field-option-label">アプリ開発</label>
+                </div>
+                <div class="inform-field-option">
+                    <input type="checkbox" name="services[]" value="consulting" class="inform-field-checkbox"
+                        id="check3">
+                    <label for="check3" class="inform-field-option-label">コンサルティング</label>
+                </div>
+            </div>
+
+            <!-- スパム対策 -->
+            <div class="inform-antispam">
+                <label class="inform-antispam-label">
+                    スパム対策確認 <span class="inform-field-required">*</span>
+                </label>
+                <p class="inform-antispam-description">
+                    以下の画像に表示されている文字を入力してください
+                </p>
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg=="
+                    alt="スパム対策画像" class="inform-antispam-image"
+                    style="width: 200px; height: 60px; background: #f0f0f0;">
+                <input type="text" class="inform-field-input" placeholder="画像の文字を入力" required>
+            </div>
+
+            <!-- 送信ボタン -->
+            <div class="inform-submit-wrapper">
+                <button type="submit" class="inform-submit-button">
+                    送信
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // テスト用のインタラクション
+        document.getElementById('test-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const successMsg = document.getElementById('success-msg');
+            const errorMsg = document.getElementById('error-msg');
+            const submitBtn = this.querySelector('.inform-submit-button');
+
+            // ローディング状態
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<span class="inform-spinner"></span>送信中...';
+
+            // 2秒後に成功メッセージを表示
+            setTimeout(() => {
+                successMsg.classList.remove('inform-hidden');
+                errorMsg.classList.add('inform-hidden');
+                submitBtn.disabled = false;
+                submitBtn.textContent = '送信';
+
+                // フォームをリセット
+                this.reset();
+            }, 2000);
+        });
+
+        // エラーメッセージのテスト（コンソールで実行可能）
+        window.showError = function () {
+            document.getElementById('error-msg').classList.remove('inform-hidden');
+            document.getElementById('success-msg').classList.add('inform-hidden');
+        };
+
+        window.showSuccess = function () {
+            document.getElementById('success-msg').classList.remove('inform-hidden');
+            document.getElementById('error-msg').classList.add('inform-hidden');
+        };
+    </script>
+</body>
+
+</html>

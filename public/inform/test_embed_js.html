@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inform JavaScript埋め込みテスト</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+
+        .test-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .description {
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .embed-code {
+            background-color: #f8f8f8;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 15px;
+            margin-bottom: 30px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="test-container">
+        <h1>Inform JavaScript埋め込みテスト</h1>
+        <p class="description">
+            このページは、Inform JavaScript埋め込み機能をテストするためのページです。
+            以下のコードを使用して、任意のウェブサイトにフォームを埋め込むことができます。
+        </p>
+
+        <h2>埋め込みコード例:</h2>
+        <div class="embed-code">
+            &lt;div id="inform-form-container"&gt;&lt;/div&gt;<br>
+            &lt;script src="http://localhost/hajime/public/inform/embed.js"&gt;&lt;/script&gt;<br>
+            &lt;script&gt;<br>
+            &nbsp;&nbsp;InformEmbed.render('inform-form-container', 1);<br>
+            &lt;/script&gt;
+        </div>
+
+        <h2>埋め込みフォーム:</h2>
+        <!-- フォームを埋め込む要素 -->
+        <div id="inform-form-container"></div>
+    </div>
+
+    <!-- Inform JavaScript埋め込みライブラリを読み込み -->
+    <script src="embed.js"></script>
+    <script>
+        // フォームをレンダリング
+        // 第1引数: 埋め込み先の要素ID
+        // 第2引数: フォームID（実際のフォームIDに変更してください）
+        InformEmbed.render('inform-form-container', 1);
+    </script>
+</body>
+
+</html>
